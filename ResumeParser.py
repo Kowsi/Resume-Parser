@@ -27,9 +27,7 @@ ADDRESS_PATTERN = [{'POS': 'NUM'}, {'POS': 'PROPN'},
                    {'ORTH': ',', 'OP': "?"},
                    {'POS': 'PROPN'},
                    {'ORTH': {
-                       'REGEX': '(AK|AL|AR|AZ|CA|CO|CT|DC|DE|FL|GA|GU|HI|IA|ID|IL|IN|KS|KY|LA|MA|MD|ME|MI|MN|MO|MS|MT|NC|ND|NE|NH|NJ|NM|NV|NY|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VA|VI|VT|WA|WI|WV|WY)'}}
-                   # ,{'IS_DIGIT': True, 'LENGTH': 5}
-                   ]
+                     'REGEX': '(AK|AL|AR|AZ|CA|CO|CT|DC|DE|FL|GA|GU|HI|IA|ID|IL|IN|KS|KY|LA|MA|MD|ME|MI|MN|MO|MS|MT|NC|ND|NE|NH|NJ|NM|NV|NY|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VA|VI|VT|WA|WI|WV|WY)'}}]
 
 LINKEDIN_URL_PATTERN = [{"LIKE_URL": True, 'ORTH': {'REGEX': r'\s*(linkedin.com)\s*'}}]
 
@@ -52,14 +50,13 @@ class ResumeParser:
   
     nlp = spacy.load("en_core_web_sm")
 
-    CANDIDATE_INFO = [{'id': 'FullName', 'match_on': MatchEvent.full_name_event, 'pattern': PERSON_PATTERN},
-                      {'id': 'Email',       'match_on': None, 'pattern': EMAIL_ID_PATTERN},
-                      {'id': 'Address',     'match_on': None, 'pattern': ADDRESS_PATTERN},
-                      {'id': 'Phone', 'match_on': None, 'pattern': PHONE_PATTERN_1},
-                      {'id': 'Phone', 'match_on': None, 'pattern': PHONE_PATTERN_2},
-                      {'id': 'GithubURL',   'match_on': None, 'pattern': GIT_URL_PATTERN},
-                      {'id': 'LinkedInURL', 'match_on': None, 'pattern': LINKEDIN_URL_PATTERN}
-                      ]
+    CANDIDATE_INFO = [{'id': 'FullName',    'match_on': MatchEvent.full_name_event, 'pattern': PERSON_PATTERN},
+                      {'id': 'Email',       'match_on': None,                       'pattern': EMAIL_ID_PATTERN},
+                      {'id': 'Address',     'match_on': None,                       'pattern': ADDRESS_PATTERN},
+                      {'id': 'Phone',       'match_on': None,                       'pattern': PHONE_PATTERN_1},
+                      {'id': 'Phone',       'match_on': None,                       'pattern': PHONE_PATTERN_2},
+                      {'id': 'GithubURL',   'match_on': None,                       'pattern': GIT_URL_PATTERN},
+                      {'id': 'LinkedInURL', 'match_on': None,                       'pattern': LINKEDIN_URL_PATTERN}]
 
     def __init__(self, file_name):
         self.txt = self.convert_docx2txt(file_name)
